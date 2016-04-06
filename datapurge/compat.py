@@ -2,7 +2,10 @@
 from functools import partial
 import django
 
-if django.VERSION >= (1,7):
+if django.VERSION >= (1,9):
+    from django.apps import apps
+    get_model = partial(apps.get_model)
+elif django.VERSION >= (1,7):
     from django.db.models import get_model
     get_model = partial(get_model)
 elif django.VERSION >= (1,4):
